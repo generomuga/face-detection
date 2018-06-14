@@ -21,16 +21,25 @@ def convert_to_grayscale(image_name):
 	"""Convert image to grayscale"""
 	return Image.open(image_name).convert('LA')
 
+def save_training_data(**kwargs):
+	file_train_data = open(kwargs['filename'], kwargs['method'])
+
+	for i, item in enumerate(kwargs['data']):
+		file_train_data.write(str(item)+',')
+
+	file_train_data.write('\n')
+
 if __name__ == '__main__':
-	img = convert_to_grayscale('images\Ethel1.jpg')
-	im = img.load()
-	[width, height] = get_image_size(img)
-	list_pixel_value = get_pixel_value(width, height, im)
-	
-
-
-	#plot values
-	#plt.plot(list_pixel_value)
-	#plt.ylabel("values")
-	#plt.xlabel("pixel no")
-	#plt.show()
+	for i in range(1,5):
+		img = convert_to_grayscale('images\gene'+str(i)+'.jpg')
+		im = img.load()
+		[width, height] = get_image_size(img)
+		
+		list_pixel_value = get_pixel_value(width, height, im)
+		save_training_data(filename='training_data\\train.csv', method='a', data=list_pixel_value)
+		
+		#plot values
+		#plt.plot(list_pixel_value)
+		#plt.ylabel("values")
+		#plt.xlabel("pixel no")
+		#plt.show()
