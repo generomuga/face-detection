@@ -30,7 +30,7 @@ def save_training_data(**kwargs):
 	file_train_data.write('\n')
 
 if __name__ == '__main__':
-	for i in range(1,5):
+	for i in range(1,6):
 		img = convert_to_grayscale('images\gene'+str(i)+'.jpg')
 		im = img.load()
 		[width, height] = get_image_size(img)
